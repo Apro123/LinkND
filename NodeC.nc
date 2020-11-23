@@ -30,4 +30,7 @@ implementation {
 
     components CommandHandlerC;
     Node.CommandHandler -> CommandHandlerC;
+
+    components linkNDC;
+    Node.linkND->linkNDC;
 }

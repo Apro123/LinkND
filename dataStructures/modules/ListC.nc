@@ -91,4 +91,23 @@ implementation{
 	command t List.get(uint16_t position){
 		return container[position];
 	}
+
+	command void List.set(uint16_t position, t value){
+		container[position] = value;
+	}
+
+	command void List.remove(uint16_t pos) {
+		if(size > 0 && pos < size) {
+			if(pos == 0) {
+				call List.popfront();
+			} else if (pos == size-1) {
+				call List.popback();
+			} else {
+				uint16_t i;
+				for(i=pos; i < size; i++) {
+					container[i] = container[i+1];
+				}
+			}
+		}
+	}
 }

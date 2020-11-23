@@ -1,3 +1,4 @@
+#!/usr/bin/env python2
 from TestSim import TestSim
 
 def main():
@@ -8,7 +9,7 @@ def main():
     s.runTime(1);
 
     # Load the the layout of the network.
-    s.loadTopo("long_line.topo");
+    s.loadTopo("circle.topo");
 
     # Add a noise model to all of the motes.
     s.loadNoise("no_noise.txt");
@@ -21,12 +22,12 @@ def main():
     s.addChannel(s.GENERAL_CHANNEL);
 
     # After sending a ping, simulate a little to prevent collision.
-    s.runTime(1);
-    s.ping(2, 3, "Hello, World");
-    s.runTime(1);
-
-    s.ping(1, 10, "Hi!");
-    s.runTime(1);
+    # s.runTime(1);
+    # s.ping(2, 3, "Hello, World");
+    s.runTime(50);
+    #
+    # s.ping(1, 10, "Hi!");
+    # s.runTime(1);
 
 if __name__ == '__main__':
     main()
