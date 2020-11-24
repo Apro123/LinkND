@@ -2,7 +2,7 @@
 #define CONSTANTS_H
 
 enum{
-	NUM_POSSIBLE_NODES=255,//from 1 to 255
+	NUM_POSSIBLE_NODES=5,//from 1 to 255
 	COST_FLUSH_LIMIT=5, //after every 5 remove the list of packet received and packet not received
 	LINKND_TIMER_DURATION=2500, // timer duration to send broadcast packet
 	SEQ_LOW_NUM_THRESHOLD=4,
