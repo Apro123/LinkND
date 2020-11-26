@@ -5,6 +5,7 @@
 #include "../../includes/sendInfo.h"
 #include "../../includes/channels.h"
 #include "../../includes/constants.h"
+#include "printf.h"
 
 configuration linkNDC {
   provides interface linkND;
@@ -15,6 +16,9 @@ implementation {
   linkND = linkNDP;
   components ActiveMessageC;
   linkNDP.Packet->ActiveMessageC;
+
+  components PrintfC;
+  components SerialStartC;
 
   components new AMReceiverC(AM_LINK) as GeneralReceive;
   linkNDP.Receive -> GeneralReceive;

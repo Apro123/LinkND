@@ -101,6 +101,7 @@ implementation {
           //replace the link cost
           payloadsLINK[i] = cost; //new cost
           printf("-%u,%u,%u,%u-", seq,node1,node2,cost);
+          printfflush();
           dbg(GENERAL_CHANNEL, "Updated link = SEQ: %d, Node1: %d, Node2: %d, COST: %d\n", seq, node1, node2, cost);
         } //else keep it as it is
         found = TRUE; //found but not necessarily updated link
@@ -117,6 +118,7 @@ implementation {
         /* post findAndStoreAvailable(givenSeq, node1, node2, cost); */
       } else {
         printf("-%u,%u,%u,%u-", seq,node1,node2,cost);
+        printfflush();
         dbg(GENERAL_CHANNEL, "Added link to Storage = SEQ: %d, Node1: %d, Node2: %d, COST: %d\n", seq, node1, node2, cost);
         payloadsSEQ[numPayloads] = seq;
         payloadsNODE1[numPayloads] = node1;

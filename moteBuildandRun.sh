@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-sudo make telosb install
+sudo make telosb
 
 ITER=1
 motePaths=$(motelist | cut -d ' ' -f 4 | grep -v -e '^$')
