@@ -248,7 +248,11 @@ implementation {
     dbg(GENERAL_CHANNEL, "Payload sending end--------\n"); */
 
     makePack(&toSend, (uint8_t)TOS_NODE_ID, len, dest, seq, pay, PACKET_MAX_PAYLOAD_SIZE);
-    seq = seq + 1;
+    if(seq == 255) {
+        seq = 1
+    } else {
+        seq = seq + 1;
+    }
     call Sender.send(toSend, AM_BROADCAST_ADDR);
     if(dest == 0) {
       /* dbg(GENERAL_CHANNEL, "Sending Broadcast\n"); */
