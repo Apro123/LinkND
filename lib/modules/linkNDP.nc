@@ -249,7 +249,7 @@ implementation {
 
     makePack(&toSend, (uint8_t)TOS_NODE_ID, len, dest, seq, pay, PACKET_MAX_PAYLOAD_SIZE);
     if(seq == 255) {
-        seq = 1
+        seq = 1;
     } else {
         seq = seq + 1;
     }
