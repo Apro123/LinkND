@@ -95,7 +95,7 @@ implementation {
         //if the sequence number is "higher" then modify the existing solution
         uint8_t savedSeq = payloadsSEQ[i];
         //do seq calculation
-        if(givenSeq > savedSeq || (savedSeq < SEQ_LOW_NUM_THRESHOLD && givenSeq > SEQ_HIGH_NUM_THRESHOLD)) {
+        if(givenSeq >= savedSeq || (savedSeq < SEQ_LOW_NUM_THRESHOLD && givenSeq > SEQ_HIGH_NUM_THRESHOLD)) {
           //update the sequence number
           payloadsSEQ[i] = givenSeq;
           //replace the link cost
@@ -248,8 +248,8 @@ implementation {
     dbg(GENERAL_CHANNEL, "Payload sending end--------\n"); */
 
     makePack(&toSend, (uint8_t)TOS_NODE_ID, len, dest, seq, pay, PACKET_MAX_PAYLOAD_SIZE);
-    if(seq == 255) {
-        seq = 1;
+    if(seq == 254) {
+        seq = 0;
     } else {
         seq = seq + 1;
     }
