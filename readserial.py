@@ -1,19 +1,30 @@
 #!/usr/bin/env python2
 
 import serial
-import subprocess
-p = subprocess.Popen(["motelist | cut -d ' ' -f 4 | grep -v -e '^$'"], stdout=subprocess.PIPE, shell=True)
-out = p.stdout.read().split()
+import sys
+import time
 
-moteSerial = []
+timeToRun = int(sys.argv[1])
+sessionNum = int(sys.argv[2])
+nodeid = int(sys.argv[3])
+moteport = sys.argv[4]
 
-for i in out:
-	moteSerial.append(serial.Serial(port=i,baudrate=115200,timeout=1))
+moteSerial = serial.Serial(port=moteport,baudrate=115200,timeout=1)
 
-print len(moteSerial)
-while(True):
-	for i in moteSerial:
-		#data = i.readline().decode('utf-8', 'ignore').encode('utf-8')
-		data = str(i.read(30))
-		print(data)
-	print("-------")
+fileToWrite = open("/home/pi/Desktop/EECS262/mountedFileSystem/MoteOutput/Session_" + str(sessionNum) + "_Node_" + str(nodeid) + ".txt", "wb")
+
+t_end = time.time() + timeToRun
+while(time.time() <= t_end):
+	data = moteSerial.read(40).decode('ascii', 'ignore')
+	if(data != ""):
+		try:
+			data = data.split("-")[1]
+			fileData = str(time.time()) + "--" + data + "--\n"
+			#print(fileData)
+			fileToWrite.write(fileData)
+			#files[i].write(fileData)
+		except:
+			#print(data.split("-")[0])
+			pass
+			
+fileToWrite.close()
