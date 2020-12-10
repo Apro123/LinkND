@@ -9,7 +9,7 @@ moteport = sys.argv[2]
 
 moteSerial = serial.Serial(port=moteport,baudrate=115200,timeout=1)
 
-fileToWrite = open("/home/pi/Desktop/EECS262/mountedFileSystem/MoteOutput/Node_" + str(nodeid) + ".txt", "wb")
+fileToWrite = open("/home/pi/Desktop/EECS262/mountedFileSystem/MoteOutput/Node_" + str(nodeid) + ".txt", "wb", buffering=0)
 
 while(True):
 	data = moteSerial.read(40).decode('ascii', 'ignore')
@@ -22,7 +22,10 @@ while(True):
 				fileData = str(time.time()) + " "
 				for pt in lineData:
 					fileData += str(pt) + ","
+				#print(fileData[:-1])
 				fileToWrite.write(fileData[:-1] + "\n")
+				#fileToWrite.flush()
+				#print("done")
 			#files[i].write(fileData)
 		except:
 			#print(data.split("-")[0])
