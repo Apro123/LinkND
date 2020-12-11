@@ -5,6 +5,9 @@ import sys
 import os
 import time
 
+#kill old processes
+os.system("pkill -f 'readserial.py'");
+
 #get number of motes
 p = subprocess.Popen(["motelist | cut -d ' ' -f 4 | grep -v -e '^$'"], stdout=subprocess.PIPE, shell=True)
 motes = p.stdout.read().split()
