@@ -28,14 +28,6 @@ while(True):
 				fileData = str(time.time()) + " "
 				for pt in lineData:
 					fileData += str(pt) + ","
-				#print(fileData[:-1])
 				os.system("echo " + fileData[:-1] + " >> " + fileName)
-				#fileToWrite.write(fileData[:-1] + "\n")
-				#fileToWrite.flush()
-				#print("done")
-			#files[i].write(fileData)
 		except:
-			#print(data.split("-")[0])
 			pass
-			
-fileToWrite.close()
